@@ -3,12 +3,14 @@ var path = require("path"),
 	webpack = require("webpack"),
 	ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const vendor = [
-	"lodash",
-	"react",
-	"react-dom"
-];
-
+	const vendor = [
+		"lodash",
+		"react",
+		"react-dom",
+		"react-router",
+		"socket.io-client",
+		"rxjs"
+	];
 
 //we use this approach instead of the typical module.export to have more control via gulp
 function createConfig(isDebug) {
@@ -36,7 +38,7 @@ function createConfig(isDebug) {
 		files:	{ test: /\.(png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)/, loader: "url-loader?limit=5000" }
 	};
 
-	const clientEntry = ["./src/client/client.js"];
+	const clientEntry = ["babel-polyfill", "./src/client/client.js"];
 
 	let publicPath = "/build/";
 
